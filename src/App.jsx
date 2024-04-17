@@ -9,6 +9,10 @@ function App() {
     projects: []
   })
 
+  function handleCancelAdd() {
+    setProjectsState((prevState) => { return { ...prevState, selectedProjectId: undefined } })
+  }
+
   function handleStartAddProject() {
     setProjectsState((prevState) => { return { ...prevState, selectedProjectId: null } })
   }
@@ -28,7 +32,7 @@ function App() {
 
   let content
   if (projectsState.selectedProjectId === null) {
-    content = <NewProject onAdd={handleAddProject} />
+    content = <NewProject onAdd={handleAddProject} onCancel={handleCancelAdd} />
   }
   else if (projectsState.selectedProjectId === undefined) {
     content = <NoProjectAdded onStartAdd={handleStartAddProject} />
